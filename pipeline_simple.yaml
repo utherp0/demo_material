@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: BuildConfig
+metadata:
+  creationTimestamp: null
+  name: CHANGE_ME
+spec:
+  output: {}
+  postCommit: {}
+  resources: {}
+  runPolicy: Serial
+  source:
+    type: None
+  strategy:
+    jenkinsPipelineStrategy:
+      jenkinsfile: "node('maven') 
+                    \ {\n stage 'Build the nodetest1 Project'\n openshiftBuild(namespace: 'CHANGE_ME_TO_NAMESPACE', buildConfig: 'CHANGE_ME_TO_BUILDCONFIG', showBuildLogs: 'true')\n
+                    \ stage 'Deploy the nodetest1 Project'\n openshiftDeploy(namespace: 'CHANGE_ME_TO_NAMESPACE', deploymentConfig: 'CHANGE_ME_TO_DEPLOYMENTCONFIG')\n 
+                    \   openshiftScale(namespace: 'CHANGE_ME_TO_NAMESPACE', deploymentConfig: 'CHANGE_ME_TO_DEPLOYMENTCONFIG',replicaCount: '3', verifyReplicaCount: 'true')\n
+                    \ }\n"
+    type: JenkinsPipeline
+  triggers:
+  - github:
+      secret: secret101
+    type: GitHub
+  - generic:
+      secret: secret101
+    type: Generic
+status:
+  lastVersion: 0
