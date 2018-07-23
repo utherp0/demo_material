@@ -1,0 +1,1 @@
+oc new-app --template=eap71-basic-s2i -p SOURCE_REPOSITORY_URL="https://github.com/utherp0/os-rest-containerview" -p SOURCE_REPOSITORY_REF="master" -p CONTEXT_DIR="/"
