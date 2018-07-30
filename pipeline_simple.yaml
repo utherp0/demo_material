@@ -15,7 +15,7 @@ spec:
       jenkinsfile: "node('maven') 
                     \ {\n stage 'Build the nodetest1 Project'\n openshiftBuild(namespace: 'CHANGE_ME_TO_NAMESPACE', buildConfig: 'CHANGE_ME_TO_BUILDCONFIG', showBuildLogs: 'true')\n
                     \ stage 'Deploy the nodetest1 Project'\n openshiftDeploy(namespace: 'CHANGE_ME_TO_NAMESPACE', deploymentConfig: 'CHANGE_ME_TO_DEPLOYMENTCONFIG')\n 
-                    \   openshiftScale(namespace: 'CHANGE_ME_TO_NAMESPACE', deploymentConfig: 'CHANGE_ME_TO_DEPLOYMENTCONFIG',replicaCount: '3', verifyReplicaCount: 'true')\n
+                    \   stage 'Scale the app'\n openshiftScale(namespace: 'CHANGE_ME_TO_NAMESPACE', deploymentConfig: 'CHANGE_ME_TO_DEPLOYMENTCONFIG',replicaCount: '3', verifyReplicaCount: 'true')\n
                     \ }\n"
     type: JenkinsPipeline
   triggers:
